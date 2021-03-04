@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Usuario } from '../models/usuario.model';
 
 
 @Injectable({
@@ -18,6 +20,13 @@ export class UsuarioService {
           .pipe(
             map( resp => resp['data'])
           );
+  }
+
+  getUser(id: string){
+    return this.http.get(`${ this.url }/users/${id}`)
+    .pipe(
+      map( resp => resp['data'])
+    );
   }
 
 }
